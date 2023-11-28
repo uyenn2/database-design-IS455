@@ -1,0 +1,154 @@
+-- book table --
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(100),
+    Author VARCHAR(100),
+    BookSubject VARCHAR(100),
+    ISBN VARCHAR(20),
+    Available BOOLEAN,
+    VendorID INT
+);
+
+-- Insert sample data into the Books table
+INSERT INTO Books (BookID, Title, Author, BookSubject, ISBN, Available, VendorID)
+VALUES
+    (1, 'To Kill a Mockingbird', 'Harper Lee', 'Fiction', '9780061120084', true, 1),
+    (2, '1984', 'George Orwell', 'Science Fiction', '9780451524935', true, 2),
+    (3, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Classic', '9780743273565', true, 3),
+    (4, 'Pride and Prejudice', 'Jane Austen', 'Classic', '9780141439518', true, 4),
+    (5, 'The Catcher in the Rye', 'J.D. Salinger', 'Fiction', '9780316769488', true, 5),
+    (6, 'Moby-Dick', 'Herman Melville', 'Adventure', '9780142437247', true, 6),
+    (7, 'The Lord of the Rings', 'J.R.R. Tolkien', 'Fantasy', '9780618640157', true, 7),
+    (8, 'The Hobbit', 'J.R.R. Tolkien', 'Fantasy', '9780547928227', true, 8),
+    (9, 'Alice''s Adventures in Wonderland', 'Lewis Carroll', 'Children''s Literature', '9780192720800', true, 9),
+    (46, 'The Stranger', 'Albert Camus', 'Philosophical Fiction', '9780679720201', true, 15),
+    (47, 'One Hundred Years of Solitude', 'Gabriel Garcia Marquez', 'Magic Realism', '9780061120084', true, 16),
+    (48, 'Walden', 'Henry David Thoreau', 'Philosophy', '9780486284958', true, 17),
+    (86, 'The Art of War', 'Sun Tzu', 'Military Strategy', '9781590302255', true, 27),
+    (87, 'The Metamorphosis', 'Franz Kafka', 'Literary Fiction', '9780142437247', true, 28),
+    (88, 'Siddhartha', 'Hermann Hesse', 'Spiritual Fiction', '9780142437247', true, 29),
+    (89, 'The Brothers Karamazov', 'Fyodor Dostoevsky', 'Classic Literature', '9780140449241', true, 30),
+    (90, 'The Sun Also Rises', 'Ernest Hemingway', 'Literary Fiction', '9780743297332', true, 31),
+    (91, 'The Fountainhead', 'Ayn Rand', 'Philosophical Fiction', '9780451191151', true, 32),
+    (118, 'Anna Karenina', 'Leo Tolstoy', 'Classic Literature', '9780143035008', true, 41),
+    (119, 'Ulysses', 'James Joyce', 'Modernist Literature', '9780199535675', true, 42),
+    (120, 'The Old Man and the Sea', 'Ernest Hemingway', 'Classic Literature', '9780684801223', true, 43),
+    (148, 'The Silmarillion', 'J.R.R. Tolkien', 'Fantasy', '9780261102736', true, 55),
+    (149, 'A Clockwork Orange', 'Anthony Burgess', 'Dystopian Fiction', '9780393312836', true, 56),
+    (150, 'Gulliver''s Travels', 'Jonathan Swift', 'Satire', '9780486292731', true, 57),
+    ;
+
+--- for users table -- 
+CREATE TABLE `users` (
+  `UserID` integer PRIMARY KEY,
+  `Username` VARCHAR,
+  `Role` VARCHAR,
+  `Address` VARCHAR,
+  `Created_at` timestamp
+);
+
+-- Inserting sample data into the Users table
+INSERT INTO users (UserID, Username, Role, Address, Created_at)
+VALUES
+    (1, 'Alice', 'Admin', '123 Main St, CityA', '2023-11-16 08:00:00'),
+    (2, 'Bob', 'User', '456 Elm St, CityB', '2023-11-15 09:30:00'),
+    (3, 'Charlie', 'User', '789 Oak St, CityC', '2023-11-14 10:45:00'),
+    (20, 'Eva', 'Admin', '246 Pine St, CityD', '2023-11-12 11:00:00'),
+    (21, 'Frank', 'User', '135 Maple St, CityE', '2023-11-11 12:15:00'),
+    (22, 'Grace', 'User', '777 Cherry St, CityF', '2023-11-10 13:30:00'),
+    (23, 'Henry', 'Admin', '888 Walnut St, CityG', '2023-11-09 14:45:00'),
+    (24, 'Isabel', 'User', '999 Cedar St, CityH', '2023-11-08 15:00:00'),
+    -- Add more sample users as needed
+    (33, 'Jack', 'User', '111 Birch St, CityI', '2023-11-07 16:15:00'),
+    (34, 'Kate', 'Admin', '222 Spruce St, CityJ', '2023-11-06 17:30:00'),
+    ;
+
+-- for Vendors Table --
+CREATE TABLE `vendors` (
+  `VendorID` INT PRIMARY KEY,
+  `VendorName` VARCHAR,
+  `ContactEmail` VARCHAR,
+  `Status` BOOLEAN,
+  `Currency` VARCHAR,
+  `Address` VARCHAR,
+  `Type` VARCHAR,
+  `BookID` INT
+);
+
+-- Inserting sample data into the Vendors table
+INSERT INTO vendors (VendorID, VendorName, ContactEmail, Status, Currency, Address, Type, BookID)
+VALUES
+    (1, 'VendorA', 'vendorA@example.com', true, 'USD', '123 Main St, CityA', 'TypeA', 101),
+    (2, 'VendorB', 'vendorB@example.com', true, 'EUR', '456 Elm St, CityB', 'TypeB', 102),
+    (3, 'VendorC', 'vendorC@example.com', true, 'GBP', '789 Oak St, CityC', 'TypeC', 103),
+    (10, 'VendorJ', 'vendorJ@example.com', false, 'USD', '246 Pine St, CityD', 'TypeD', 110),
+    (11, 'VendorK', 'vendorK@example.com', true, 'CAD', '135 Maple St, CityE', 'TypeE', 111),
+    ;
+
+CREATE TABLE `borrowings` (
+  `UserID` INT,
+  `BookID` INT,
+  `BorrowedDate` DATE,
+  `DueDate` DATE,
+  `ReturnedDate` DATE,
+  PRIMARY KEY (`UserID`, `BookID`)
+);
+
+-- Inserting sample data into the Borrowings table, linking users with borrowed books
+INSERT INTO borrowings (UserID, BookID, BorrowedDate, DueDate, ReturnedDate)
+VALUES
+    (1, 1, '2023-11-01', '2023-11-15', '2023-11-14'), -- User 1 borrowed Book 1
+    (2, 2, '2023-11-02', '2023-11-16', NULL),         -- User 2 borrowed Book 2 (not yet returned)
+    (3, 3, '2023-11-03', '2023-11-17', '2023-11-17'), -- User 3 borrowed Book 3 and returned it on the same day
+    (4, 4, '2023-11-04', '2023-11-18', NULL),         -- User 4 borrowed Book 4 (not yet returned)
+    (5, 5, '2023-11-05', '2023-11-19', '2023-11-18'), -- User 5 borrowed Book 5 and returned it before the due date
+    (6, 6, '2023-11-06', '2023-11-20', NULL),         -- User 6 borrowed Book 6 (not yet returned)
+    (7, 7, '2023-11-07', '2023-11-21', '2023-11-20'), -- User 7 borrowed Book 7 and returned it before the due date
+    (8, 8, '2023-11-08', '2023-11-22', NULL),         -- User 8 borrowed Book 8 (not yet returned)
+    (9, 9, '2023-11-09', '2023-11-23', NULL),         -- User 9 borrowed Book 9 (not yet returned)
+    (10, 10, '2023-11-10', '2023-11-24', '2023-11-23'),-- User 10 borrowed Book 10 and returned it before the due date
+    (1, 11, '2023-11-11', '2023-11-25', NULL),       -- User 1 borrowed Book 11 (not yet returned)
+    (1, 12, '2023-11-12', '2023-11-26', NULL),       -- User 1 borrowed Book 12 (not yet returned)
+    (2, 13, '2023-11-13', '2023-11-27', '2023-11-26'),-- User 2 borrowed Book 13 and returned it before the due date
+    (3, 14, '2023-11-14', '2023-11-28', NULL),       -- User 3 borrowed Book 14 (not yet returned)
+    (3, 15, '2023-11-15', '2023-11-29', NULL),       -- User 3 borrowed Book 15 (not yet returned)
+    ;
+
+-- acquiring table -- 
+CREATE TABLE `acquiring` (
+  `VendorID` INT,
+  `BookID` INT,
+  `AcquisitionDate` DATE,
+  `OrderStatus` BOOLEAN,
+  `Price` DECIMAL,
+  `Quantity` INT,
+  PRIMARY KEY (`VendorID`, `BookID`)
+);
+
+-- Inserting sample data into the Acquiring table, linking vendors with acquired books
+INSERT INTO acquiring (VendorID, BookID, AcquisitionDate, OrderStatus, Price, Quantity)
+VALUES
+    (1, 10, '2023-10-01', true, 25.99, 1),        
+    (2, 2, '2023-10-02', true, 19.95, 2),       
+    (3, 5, '2023-10-03', true, 30.50, 4),        
+    (4, 7, '2023-10-04', false, 22.75, 1),       -- Vendor 4 attempted acquisition of Book 104 (order not yet fullfilled)
+    (5, 8, '2023-10-05', true, 28.40, 2),        
+    (6, 9, '2023-10-06', true, 32.99, 30),        
+    (7, 10, '2023-10-07', true, 18.75, 25),        
+    (8, 12, '2023-10-08', true, 24.50, 40),        
+    (9, 1, '2023-10-09', false, 29.99, 35),       -- Vendor 9 attempted acquisition of Book 109 (order not yet fullfilled)
+    (10, 110, '2023-10-10', true, 21.80, 20),       
+    (1, 111, '2023-10-11', true, 20.99, 30),       
+    (1, 112, '2023-10-12', true, 18.75, 25),        
+    (2, 113, '2023-10-13', true, 24.50, 40),        
+    (2, 114, '2023-10-14', true, 22.99, 35),        
+    (3, 115, '2023-10-15', true, 19.80, 20),        
+    (4, 116, '2023-10-16', true, 23.50, 45),       
+    (4, 117, '2023-10-17', false, 28.75, 30),       -- Vendor 4 attempted acquisition of Book 117 (order not yet fullfilled)
+    (5, 118, '2023-10-18', true, 26.40, 55),        
+    (5, 119, '2023-10-19', true, 21.99, 40),        
+    (6, 120, '2023-10-20', true, 30.50, 50),        
+    ;
+
+
+
